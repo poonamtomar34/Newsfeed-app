@@ -7,9 +7,10 @@ const client = axios.create({
   baseURL: "https://jsonplaceholder.typicode.com/posts" 
 });
 const UseEffectFetchData = (props) => {
-   const [toggle1, setToggle1] = useState(false);
+   let [isToggle,setIsToggle]=useState('')
    const[users,setUsers]=useState([])
-   const callback = valueFromChild => setToggle1(valueFromChild);
+   const callback = (valueFromChild) => setIsToggle(valueFromChild);
+   console.log(isToggle);
   useEffect(() => {
     const fetchPost = async () => {
        try {
@@ -34,28 +35,29 @@ const UseEffectFetchData = (props) => {
   //then when getUsers will be called it,ll again be updated, and it will create an infinite loop and the browser will most probably crash.
   return (
         <>
-        <Aside callbackFunc={callback} toggle1Value={toggle1}></Aside>
-        <ul className='users'>
+        <Aside callbackFunc={callback}></Aside>
+        <ul className={isToggle?'users':'usersChange'}>
         {users.map((user)=>{
           const {id,title,body}=user
           return <><li key={id}>
             <div>
-                <img src={`${process.env.PUBLIC_URL}/images/victoria-secret-image${id}.jpg`} alt="" style={{width:"50px", height:'50px'}}/>
+                <img src={`${process.env.PUBLIC_URL}/images/victoria-secret-image${id}.jpg`} alt=""/>
                 <div className="news-content">
                 <h4> 
-              <WordLimit limit={35}>
+              <WordLimit limit={isToggle?35:10}>
               {title}
               </WordLimit>
               </h4>
-              <p><WordLimit limit={85}>
+              <p><WordLimit limit={isToggle?75:25}>
               {body}
               </WordLimit></p>
                 </div>
             </div>
-          </li>
-          <div className="button">
-                <button className="delete-btn" onClick={()=>deletePost(id)}>X</button>
+            <div className="button">
+                <button className={isToggle?'delete-btn':'buttonChange'} onClick={()=>deletePost(id)}>X</button>
           </div>
+          </li>
+          
           </>
         })}
          </ul>

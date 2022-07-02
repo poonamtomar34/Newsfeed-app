@@ -1,13 +1,10 @@
 import React,{useState} from "react";
 
 const Aside = (props) => {
-  let childCounterValue = props.valueFromChild;
-  console.log('props.valueFromChild', props.toggle1);
+  console.log(props);
+  const [toggle1, setToggle1] = useState(false);
     const toggleFunc=()=>{
-      props.callbackFunc(!childCounterValue)
-      console.log('props',props);
-      console.log('pouoj', props.callbackFunc(childCounterValue));
-      return
+      setToggle1(!toggle1)
     }
   return (
     <aside className="sidebar">
@@ -16,7 +13,7 @@ const Aside = (props) => {
           Logo
         </div>
         <label class="switch">
-        <input type="checkbox" defaultChecked onClick={()=>toggleFunc()}/>
+        <input type="checkbox" defaultChecked onClick={()=>{toggleFunc();props.callbackFunc(toggle1)}}/>
         <span class="slider"></span>
         </label>
         <div>
