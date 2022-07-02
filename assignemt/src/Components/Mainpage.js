@@ -14,7 +14,7 @@ const UseEffectFetchData = (props) => {
   useEffect(() => {
     const fetchPost = async () => {
        try {
-          let response = await client.get('?_limit=15');
+          let response = await client.get('?_limit=6');
           setUsers(response.data);
        } catch (error) {
           console.log(error);  
