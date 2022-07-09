@@ -378,6 +378,12 @@ Variables
   .nav-links a {
     color: var(--clr-grey-5);
   }
+  .dataContainer{
+    margin-left:30%;
+  }
+  .dataContainerChange{
+    margin-left: 60%;
+  }
   .usersChange{
     display: grid;
     grid-template-columns: 17vw 17vw 17vw;
@@ -398,7 +404,7 @@ Variables
     padding: 1rem 2rem;
     border-radius: 10px 10px;
     text-align: left;
-    height: 5rem;
+    height: 4.5rem;
     box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
   }
   .users img {
@@ -440,6 +446,7 @@ Variables
   .button{
     display: inline;
     margin-left:102%;
+    cursor: pointer;
   }
   .delete-btn{
     color:red;
@@ -460,6 +467,7 @@ Variables
     margin-left: -2.5%;
     position: relative;
     border-style: none;
+    cursor: pointer;
   }
   .feedback-btn{
     color:black;

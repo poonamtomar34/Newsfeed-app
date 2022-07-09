@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import Aside from './Aside';
-import WordLimit from 'react-word-limit';
+import Pagination from './Pagination';
+import { Post } from './Post';
+
 
 const client = axios.create({
   baseURL: "https://jsonplaceholder.typicode.com/posts" 
@@ -14,10 +16,10 @@ const UseEffectFetchData = (props) => {
   useEffect(() => {
     const fetchPost = async () => {
        try {
-          let response = await client.get('?_limit=6');
+          let response = await client.get('?_limit=30');
           setUsers(response.data);
        } catch (error) {
-          console.log(error);  
+          console.log(error);
        }
     };
     fetchPost();
@@ -26,6 +28,7 @@ const UseEffectFetchData = (props) => {
     await client.delete(`${id}`);
     setUsers(
        users.filter((user) => {
+         console.log('user.id        ' ,user.id, 'id  ',id)
           return user.id !== id;
        })
     );
@@ -36,19 +39,34 @@ const UseEffectFetchData = (props) => {
   return (
         <>
         <Aside callbackFunc={callback}></Aside>
-        <ul className={isToggle?'users':'usersChange'}>
-        {users.map((user)=>{
+        
+        <div className="dataContainer">
+        {users.length > 0 ? (
+        
+          <Pagination
+          onClickDelete={(id)=>deletePost(id)}
+          passToggle={isToggle}
+            data={users}
+            RenderComponent={Post}
+            title="Posts"
+            pageLimit={5}
+            dataLimit={6}
+          />
+      ) : (
+       <h1>Loading......</h1>
+      )}
+        {/* {users.map((user)=>{
           const {id,title,body}=user
           return <><li key={id}>
             <div>
-                <img src={`${process.env.PUBLIC_URL}/images/victoria-secret-image${id}.jpg`} alt=""/>
+                <img src={(id%6===0)?`${process.env.PUBLIC_URL}/images/victoria-secret-image${6}.jpg`:`${process.env.PUBLIC_URL}/images/victoria-secret-image${id%6}.jpg`} alt=""/>
                 <div className="news-content">
                 <h4> 
               <WordLimit limit={isToggle?35:10}>
               {title}
               </WordLimit>
               </h4>
-              <p><WordLimit limit={isToggle?75:25}>
+              <p><WordLimit limit={isToggle?65:25}>
               {body}
               </WordLimit></p>
                 </div>
@@ -59,8 +77,8 @@ const UseEffectFetchData = (props) => {
           </li>
           
           </>
-        })}
-         </ul>
+        })} */}
+         </div>
         </>);
 };
 export default UseEffectFetchData;
