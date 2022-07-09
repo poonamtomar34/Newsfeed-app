@@ -1,9 +1,10 @@
 import React,{useState} from "react";
 
-
 export default function Pagination({ data, RenderComponent,onClickDelete, pageLimit, dataLimit,passToggle }) {
   const [pages] = useState(Math.round(data.length / dataLimit));
   const [currentPage, setCurrentPage] = useState(1);
+  const previousArrow='<<'
+  const nextArrow='>>'
 
   function goToNextPage() {
     setCurrentPage((page) => page + 1);
@@ -50,9 +51,9 @@ export default function Pagination({ data, RenderComponent,onClickDelete, pageLi
         {/* previous button */}
         <button
           onClick={goToPreviousPage}
-          className={`prev ${currentPage === 1 ? 'disabled' : ''}`}
+          className={(currentPage===1)?'prevArrowDisabled myArrow':'prevArrow myArrow'}
         >
-          prev
+          {previousArrow}
         </button>
   
         {/* show page numbers */}
@@ -60,7 +61,7 @@ export default function Pagination({ data, RenderComponent,onClickDelete, pageLi
           <button
             key={index}
             onClick={changePage}
-            className={`paginationItem ${currentPage === item ? 'active' : null}`}
+            className={(currentPage === item)?'myArrow':'myArrow'}
           >
             <span>{item}</span>
           </button>
@@ -69,9 +70,9 @@ export default function Pagination({ data, RenderComponent,onClickDelete, pageLi
         {/* next button */}
         <button
           onClick={goToNextPage}
-          className={`next ${currentPage === pages ? 'disabled' : ''}`}
+          className={(currentPage === pages)?'nxtArrowdisabled myArrow':'nxtArrow myArrow'}
         >
-          next
+          {nextArrow}
         </button>
       </div>
     </div>
