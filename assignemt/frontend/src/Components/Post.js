@@ -20,11 +20,12 @@ export function Post(props) {
         bottom: 'auto',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
+        padding:'0px',
       },
     };
     return (<>
-        <li onClick={openModal}>
-        <div>
+        <li >
+        <div onClick={openModal}>
         
         <img src={(id%6===0)?`${process.env.PUBLIC_URL}/images/victoria-secret-image${6}.jpg`:`${process.env.PUBLIC_URL}/images/victoria-secret-image${id%6}.jpg`} alt=""/>
         <div className="news-content">

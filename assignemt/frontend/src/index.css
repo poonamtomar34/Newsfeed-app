@@ -151,6 +151,7 @@ Variables
     justify-content: space-between;
     width: 15rem;
     margin: 0;
+    position: absolute;
   }
   .sidetop {
     height: 11.8rem;
@@ -253,11 +254,52 @@ Variables
     -ms-transform: translateX(26px);
     transform: translateX(26px);
   }
+  .feedbackOverlay {
+    background-color: rgba(0, 0, 0, 0.55);
+    top: 0;
+    bottom: 0;
+    left:15rem;
+    right: 0;
+    position: fixed;
+    display: none;
+    z-index: 5;
+  }
+  
+  .feedbackOverlay.feedbackShow {
+    display: block;
+  }
+  
+  .feedbackModal {
+    position: absolute;
+    background-color:blue;
+    width: 50rem;
+    left:-35rem;
+    box-shadow: 0 0 4px 0px rgba(0, 0, 0, 0.15);
+    padding: 0 12px 12px;
+    transition: all 0.5s ease-out;
+    z-index: -1;
+    height: 41.05rem;
+  }
+  .feedbackModal.feedbackShow {
+    left:100%;
+    z-index: 10;
+  }
+  
+  .feedbackClose {
+    cursor: pointer;
+    position: absolute;
+    top: 16px;
+    right: 10px;
+    background-color: transparent;
+    border: 0;
+    font-size: 18px;
+  }
+  
 
   /*aside classes*/
   /* section */
   .dataContainer{
-    margin-left:10%;
+    margin-left:30%;
   }
   .dataContainerChange{
     margin-left: 60%;

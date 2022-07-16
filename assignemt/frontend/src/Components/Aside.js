@@ -1,7 +1,8 @@
 import React,{useState} from "react";
+import Form from "./Feedback/Form";
 
 const Aside = (props) => {
-  console.log(props);
+  const [feedbackDisplayModal, setFeedbackDisplayModal] = useState(false);
   const [toggle1, setToggle1] = useState(false);
     const toggleFunc=()=>{
       setToggle1(!toggle1)
@@ -28,9 +29,23 @@ const Aside = (props) => {
             className="dashbord"
           />
           <h4>Have a Feedback?</h4>
-          <button className="feedback-btn">We are Listening</button>
+          <button className="feedback-btn" onClick={() => setFeedbackDisplayModal(!feedbackDisplayModal)}>We are Listening</button>
           <div/>
         </div>
+        
+      <section className={`feedbackModal ${feedbackDisplayModal ? "feedbackShow" : ""}`}>
+        {/* <button
+          className="feedbackClose"
+          onClick={() => setFeedbackDisplayModal(!feedbackDisplayModal)}
+        >
+          X
+        </button> */}
+        <Form/>
+      </section>
+      <section
+        className={`feedbackOverlay ${feedbackDisplayModal ? "feedbackShow" : ""}`}
+        onClick={() => setFeedbackDisplayModal(!feedbackDisplayModal)}
+      />
       </div>
     </aside>
   );
