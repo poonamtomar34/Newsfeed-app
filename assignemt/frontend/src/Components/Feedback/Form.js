@@ -19,12 +19,31 @@ const Form = () => {
       payload: e.target.value,
     })
   }
-  const onFormSubmit = (e) => {
-    //e.preventDefault()
-    alert(formState.firstName)
-  }
+  const onFormSubmit=()=> { // Once the form has been submitted, this function will post to the backend
+    const postURL = "http://localhost:5500/api/v1/feedback" //Our previously set up route in the backend
+    fetch(postURL, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ // We should keep the fields consistent for managing this data later
+            //const {firstName,lastName,comment,email,country,phoneNo}=formState
+            firstName:formState.firstName,
+            lastName:formState.lastName,
+            comment:formState.comment, 
+            email:formState.email,
+            country:formState.country,
+            phoneNo:formState.phoneNo
+          })
+    })
+    .then(()=>{
+        // Once posted, the user will be notified 
+        alert('You have been added to the system!');
+    })
+}
   return (<>
-  <form method="" onSubmit={onFormSubmit}>
+  <form onSubmit={onFormSubmit}>
   <h3>Thank you so much for taking your time!!</h3>
   <p>Please provide below details..</p>
     <label> 
