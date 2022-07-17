@@ -51,6 +51,9 @@ export function Post(props) {
   <iframe src="https://en.wikipedia.org/wiki/Wikipedia" className='iframeContainer' title="Iframe Example"></iframe>
   <p></p>
   <button onClick={closeModal}>close</button>
+{
+  Modal.setAppElement('body')
+}
   </Modal>
   </>
     );

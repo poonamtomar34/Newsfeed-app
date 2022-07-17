@@ -103,7 +103,7 @@ Variables
     font-size: 0.875rem;
   }
   p {
-    margin-bottom: 1.25rem;
+    margin: 0;
     color: var(--clr-grey-5);
   }
   @media screen and (min-width: 800px) {
@@ -271,14 +271,16 @@ Variables
   
   .feedbackModal {
     position: absolute;
-    background-color:blue;
-    width: 50rem;
-    left:-35rem;
+    background-color: #c2e9f9;
+    width: 53rem;
+    left:-38rem;
     box-shadow: 0 0 4px 0px rgba(0, 0, 0, 0.15);
     padding: 0 12px 12px;
     transition: all 0.5s ease-out;
     z-index: -1;
     height: 41.05rem;
+    border-bottom-right-radius: 3rem;
+    border-top-right-radius: 3rem;
   }
   .feedbackModal.feedbackShow {
     left:100%;
@@ -294,8 +296,37 @@ Variables
     border: 0;
     font-size: 18px;
   }
-  
-
+  .feedback-form{
+    margin: 2rem 4rem;
+  }
+  .feedback-input {
+    margin-bottom: 0.3rem;
+}
+input[type=text] {
+  width: 60%;
+  padding: 10px 7px;
+  margin: 2px 0;
+  box-sizing: border-box;
+  border: 1px solid #c2e9f9;
+  outline: none;
+  border-radius: 0.3rem 0.3rem;
+}
+textarea {
+  border-radius: 0.5rem 0.5rem;
+  width: 95%;
+  height: 100px;
+  padding: 7px 7px;
+  box-sizing: border-box;
+  border: 1px solid #c2e9f9;
+  font-size: 16px;
+  resize: none;
+  outline: none;
+}
+#fdbck-btn{
+  padding: 0.5rem;
+  width: 25%;
+  margin: 0.5rem 0;
+}
   /*aside classes*/
   /* section */
   .dataContainer{

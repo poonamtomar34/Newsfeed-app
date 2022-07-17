@@ -1,6 +1,7 @@
-import React, { useReducer } from 'react'
+import React, { useReducer,useMemo } from 'react';
+import countryList from 'react-select-country-list';
+import Select from 'react-select';
 import FormReducer from './FormReducer'
-
 
 const initalFormState={
   firstName:" ",
@@ -12,6 +13,7 @@ const initalFormState={
 }
 const Form = () => {
   const [formState, dispatch]= useReducer(FormReducer, initalFormState)
+  const options = useMemo(() => countryList().getData(), [])
   const handleOnChange=(e)=>{
     dispatch({
       type: "Handle text input",
@@ -39,41 +41,55 @@ const Form = () => {
     })
     .then(()=>{
         // Once posted, the user will be notified 
-        alert('You have been added to the system!');
+        alert(formState.country);
     })
 }
   return (<>
-  <form onSubmit={onFormSubmit}>
+  <form onSubmit={onFormSubmit} className="feedback-form">
   <h3>Thank you so much for taking your time!!</h3>
-  <p>Please provide below details..</p>
+  <h5>Please provide below details..</h5>
+  <br />
+    <div className='feedback-input'>
     <label> 
       <p>First Name</p>
-      <input type="text" name="firstName" value={formState.firstName} onChange={(e)=>handleOnChange(e)}/>
+      <input type="text" name="firstName" value={formState.firstName} onChange={(e)=>handleOnChange(e)} required/>
     </label>
+    </div>
+    <div className='feedback-input'>
     <label> 
       <p>Last Name</p>
-      <input type="text" name="lastName" value={formState.lastName} onChange={(e)=>handleOnChange(e)}/>
+      <input type="text" name="lastName" value={formState.lastName} onChange={(e)=>handleOnChange(e)} required/>
     </label>
+    </div>
+    <div className='feedback-input'>
     <label> 
       <p>Feedback</p>
-      <input type="text" name="comment" value={formState.comment} onChange={(e)=>handleOnChange(e)}/>
+      <textarea type="text" name="comment" value={formState.comment} onChange={(e)=>handleOnChange(e)} required>Some text...</textarea>
     </label>
+    </div>
+    <div className='feedback-input'>
     <label> 
       <p>E-mail</p>
-      <input type="text" name="email" value={formState.email} onChange={(e)=>handleOnChange(e)}/>
+      <input type="text" name="email" value={formState.email} onChange={(e)=>handleOnChange(e)} required/>
     </label>
+    </div>
+    <div className='feedback-input'>
     <label> 
       <p>Country</p>
-      <input type="text" name="country" value={formState.country} onChange={(e)=>handleOnChange(e)}/>
+      <Select type="text" name="country" options={options} value={formState.country} onChange={(e)=>handleOnChange(e)} required/>
     </label>
+    </div>
+    <div className='feedback-input'>
     <label>
       <p>Phone number</p> 
-      <input type="text" name="phoneNo" value={formState.phoneNo} onChange={(e)=>handleOnChange(e)}/>
+      <input type="text" name="phoneNo" value={formState.phoneNo} onChange={(e)=>handleOnChange(e)} required/>
     </label>
-
-    <button type='submit'>
-      submit
+    </div>
+    <div className='feedback-input'>
+    <button type='submit' id="fdbck-btn" className=' feedback-btn'>
+      submit feedback
     </button>
+    </div>
   </form>
   </>
   )

@@ -19,9 +19,9 @@ const Aside = (props) => {
         </div>
         <div className="sidetop sidetoggle">
           <h4>Visit Toggle</h4>
-        <label class="switch">
+        <label className="switch">
         <input type="checkbox" defaultChecked onClick={()=>{toggleFunc();props.callbackFunc(toggle1)}}/>
-        <span class="slider"></span>
+        <span className="slider"></span>
         </label>
         </div>
         <div>
