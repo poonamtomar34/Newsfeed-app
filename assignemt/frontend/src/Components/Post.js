@@ -21,6 +21,8 @@ export function Post(props) {
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
         padding:'0px',
+        border:'3px solid rgb(2, 2, 150)',
+        borderRadius:'1rem 1rem'
       },
     };
     return (<>
@@ -48,9 +50,11 @@ export function Post(props) {
   isOpen={modalIsOpen}
   style={customStyles}
 >
+  <div className="iframe-heading">
+  <p className="iframe-para">Here's some news for you!</p>
+  <button className="iframe-button" onClick={closeModal}>close</button>
+  </div>
   <iframe src="https://en.wikipedia.org/wiki/Wikipedia" className='iframeContainer' title="Iframe Example"></iframe>
-  <p></p>
-  <button onClick={closeModal}>close</button>
 {
   Modal.setAppElement('body')
 }

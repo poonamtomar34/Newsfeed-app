@@ -314,7 +314,7 @@ input[type=text] {
 textarea {
   border-radius: 0.5rem 0.5rem;
   width: 95%;
-  height: 100px;
+  height: 70px;
   padding: 7px 7px;
   box-sizing: border-box;
   border: 1px solid #c2e9f9;
@@ -327,6 +327,37 @@ textarea {
   width: 25%;
   margin: 0.5rem 0;
 }
+
+
+/*************iframe****************/
+.iframe-heading{
+  height: 3.6rem;
+}
+.iframe-para{
+  display: inline;
+  font-size: 30px;
+  margin-left: 15rem;
+}
+.iframe-button{
+  float: right;
+  margin: 1rem 2rem;
+  width: 7%;
+  padding: 0.2rem 0.5rem;
+  cursor: pointer;
+  background-color: rgb(33, 94, 226);
+  color: whitesmoke;
+  border: 1px solid rgb(2, 2, 150);
+  border-radius: 0.5rem 0.5rem;
+}
+.iframeContainer{
+  width: 70rem;
+  height:28rem;
+  margin: 0;
+  display:block;
+  border-left: none;
+  border-top: 2px solid silver;
+}
+/*************iframe*****************/
   /*aside classes*/
   /* section */
   .dataContainer{
@@ -450,9 +481,4 @@ textarea {
     width: 10rem;
     height: 10rem;
     background-color:  red;
-  }
-  .iframeContainer{
-    width: 70rem;
-    height:30rem;
-    margin: 0;
   }

@@ -8,7 +8,7 @@ const initalFormState={
   lastName:" ",
   comment:" ",
   email:" ",
-  country:" ",
+  country:[],
   phoneNo:" "
 }
 const Form = () => {
@@ -21,6 +21,7 @@ const Form = () => {
       payload: e.target.value,
     })
   }
+  // https://dev.to/email2vimalraj/usereducer-hooks-demo-with-nested-select-boxes-3ad1
   const onFormSubmit=()=> { // Once the form has been submitted, this function will post to the backend
     const postURL = "http://localhost:5500/api/v1/feedback" //Our previously set up route in the backend
     fetch(postURL, {
@@ -41,7 +42,7 @@ const Form = () => {
     })
     .then(()=>{
         // Once posted, the user will be notified 
-        alert(formState.country);
+        alert(options);
     })
 }
   return (<>
@@ -76,7 +77,7 @@ const Form = () => {
     <div className='feedback-input'>
     <label> 
       <p>Country</p>
-      <Select type="text" name="country" options={options} value={formState.country} onChange={(e)=>handleOnChange(e)} required/>
+      <Select type="text" name="country" options={options} value={formState.country} onChange={(e)=>handleOnChange(e)} style={{width:'15%'}}/>
     </label>
     </div>
     <div className='feedback-input'>
