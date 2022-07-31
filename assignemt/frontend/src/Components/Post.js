@@ -42,7 +42,7 @@ export function Post(props) {
     </div>
     {/* onClick={()=>deletePost(id)} */}
     <div className="button">
-        <button className={isToggle?'delete-btn':'buttonChange'} onClick={onClickDelete}>X</button>
+        <button className={isToggle?'delete-btn':'buttonChange'} onClick={(e)=>{onClickDelete(e)}}>X</button>
   </div>
   </li>
   <Modal

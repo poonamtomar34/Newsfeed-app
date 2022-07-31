@@ -1,18 +1,27 @@
 import React, { useReducer} from 'react';
+import { useState } from 'react';
 import { countryList } from './CountryList';
 import FormReducer from './FormReducer'
 
 const initalFormState={
-  firstName:" ",
-  lastName:" ",
-  comment:" ",
-  email:" ",
+  firstName:"",
+  lastName:"",
+  comment:"",
+  email:"",
   country:[],
   phoneNo:" "
 }
 const Form = () => {
   const [formState, dispatch]= useReducer(FormReducer, initalFormState)
   //console.log(countryList)
+  const [countChar, setCountChar]=useState(0)
+  const countTextHandler=(e)=>{
+    const countTexts=e.target.value.length
+    if (countTexts===100){
+      alert("characters can't exceed 100 letters.")
+    }
+    setCountChar(countTexts)
+  }
   const handleOnChange=(e)=>{
     dispatch({
       type: "Handle text input",
@@ -66,7 +75,8 @@ const Form = () => {
     <div className='feedback-input'>
     <label> 
       <p>Feedback</p>
-      <textarea type="text" name="comment" value={formState.comment} onChange={(e)=>handleOnChange(e)} required>Some text...</textarea>
+      <textarea type="text" name="comment" value={formState.comment} maxLength={100} onChange={(e)=>{handleOnChange(e); countTextHandler(e)}} required></textarea>
+      <p>{countChar}</p>
     </label>
     </div>
     <div className='feedback-input'>
