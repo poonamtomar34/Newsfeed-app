@@ -1,4 +1,4 @@
-import React, { useReducer,useMemo } from 'react';
+import React, { useReducer} from 'react';
 import { countryList } from './CountryList';
 import FormReducer from './FormReducer'
 
@@ -52,7 +52,7 @@ const Form = () => {
   <h5>Please provide below details..</h5>
   <br />
     <div className='feedback-input'>
-    <label> 
+    <label>
       <p>First Name</p>
       <input type="text" name="firstName" value={formState.firstName} onChange={(e)=>handleOnChange(e)} required/>
     </label>

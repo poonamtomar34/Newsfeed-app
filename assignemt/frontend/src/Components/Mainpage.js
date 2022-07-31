@@ -28,7 +28,7 @@ const UseEffectFetchData = (props) => {
     await client.delete(`${id}`);
     setUsers(
        users.filter((user) => {
-         console.log('user.id        ' ,user.id, 'id  ',id)
+         console.log('user.id' ,user.id, 'id  ',id)
           return user.id !== id;
        })
     );
@@ -55,29 +55,7 @@ const UseEffectFetchData = (props) => {
       ) : (
        <h1>Loading......</h1>
       )}
-        {/* {users.map((user)=>{
-          const {id,title,body}=user
-          return <><li key={id}>
-            <div>
-                <img src={(id%6===0)?`${process.env.PUBLIC_URL}/images/victoria-secret-image${6}.jpg`:`${process.env.PUBLIC_URL}/images/victoria-secret-image${id%6}.jpg`} alt=""/>
-                <div className="news-content">
-                <h4> 
-              <WordLimit limit={isToggle?35:10}>
-              {title}
-              </WordLimit>
-              </h4>
-              <p><WordLimit limit={isToggle?65:25}>
-              {body}
-              </WordLimit></p>
-                </div>
-            </div>
-            <div className="button">
-                <button className={isToggle?'delete-btn':'buttonChange'} onClick={()=>deletePost(id)}>X</button>
-          </div>
-          </li>
-          
-          </>
-        })} */}
+        
          </div>
         </>);
 };
