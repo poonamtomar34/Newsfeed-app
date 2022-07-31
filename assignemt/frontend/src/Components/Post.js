@@ -28,7 +28,6 @@ export function Post(props) {
     return (<>
         <li >
         <div onClick={openModal}>
-        
         <img src={(id%6===0)?`${process.env.PUBLIC_URL}/images/victoria-secret-image${6}.jpg`:`${process.env.PUBLIC_URL}/images/victoria-secret-image${id%6}.jpg`} alt=""/>
         <div className="news-content">
         <h4> 

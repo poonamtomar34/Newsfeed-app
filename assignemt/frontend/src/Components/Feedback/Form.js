@@ -1,6 +1,5 @@
 import React, { useReducer,useMemo } from 'react';
-import countryList from 'react-select-country-list';
-import Select from 'react-select';
+import { countryList } from './CountryList';
 import FormReducer from './FormReducer'
 
 const initalFormState={
@@ -13,7 +12,7 @@ const initalFormState={
 }
 const Form = () => {
   const [formState, dispatch]= useReducer(FormReducer, initalFormState)
-  const options = useMemo(() => countryList().getData(), [])
+  //console.log(countryList)
   const handleOnChange=(e)=>{
     dispatch({
       type: "Handle text input",
@@ -22,7 +21,9 @@ const Form = () => {
     })
   }
   // https://dev.to/email2vimalraj/usereducer-hooks-demo-with-nested-select-boxes-3ad1
-  const onFormSubmit=()=> { // Once the form has been submitted, this function will post to the backend
+  const onFormSubmit=(e)=> {
+    e.preventDefault();
+     // Once the form has been submitted, this function will post to the backend
     const postURL = "http://localhost:5500/api/v1/feedback" //Our previously set up route in the backend
     fetch(postURL, {
         method: 'POST',
@@ -42,7 +43,7 @@ const Form = () => {
     })
     .then(()=>{
         // Once posted, the user will be notified 
-        alert(options);
+        alert(formState.country);
     })
 }
   return (<>
@@ -77,13 +78,22 @@ const Form = () => {
     <div className='feedback-input'>
     <label> 
       <p>Country</p>
-      <Select type="text" name="country" options={options} value={formState.country} onChange={(e)=>handleOnChange(e)} style={{width:'15%'}}/>
-    </label>
+      <select onChange={(e)=>handleOnChange(e)} name="country">
+        {
+          countryList.map((option,idx)=>{
+            const {name}=option
+            return <option key={idx}>{name}</option>
+          })
+        }
+      </select>
+      </label>
     </div>
     <div className='feedback-input'>
     <label>
       <p>Phone number</p> 
-      <input type="text" name="phoneNo" value={formState.phoneNo} onChange={(e)=>handleOnChange(e)} required/>
+      <input type="te" name="phoneNo" value={formState.phoneNo} onChange={(e)=>handleOnChange(e)}  required/>
+      <input type="te" name="phoneNo" value={formState.phoneNo} onChange={(e)=>handleOnChange(e)} required/>
+    
     </label>
     </div>
     <div className='feedback-input'>
